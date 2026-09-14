@@ -19,3 +19,4 @@ console.log(undefined < null);
 // ===  use for Strict checking means datatype checking also while comparing
 
 console.log("2" === 2);
+console.log(2+2);
