@@ -57,3 +57,27 @@ typeof [];               "object"
 Functions
 typeof function() {};      "function"
 */
+
+////////////////////////////////////  MEMORY  ////////////////////////////////////
+
+// Stack (Primitive)  - Call by value => copy of original data is created and stored in stack memory
+
+let name1 = "noshimi";
+let name2 = name1;
+name2 = "Priyanka";
+
+console.log(name1);
+console.log(name2);
+
+
+//  Heap (Non-Primitive) - Call by reference => orginal data is changed
+
+let user1 = {
+    email : "noshimi@google.com" ,
+    age : 21
+};
+let user2 = user1;
+user2.email = "noshimi@gmail.com";
+
+console.log(user1);
+console.log(user2);
