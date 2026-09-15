@@ -20,7 +20,7 @@ console.log(str.toLowerCase());
 console.log(str.indexOf("World"));
 console.log(str.slice(-5, -1));
 console.log(str.replace("World", "JavaScript"));
-console.log(str.substring(0, 4));  // (starting index, length of substring)   
+console.log(str.substring(0, 4));  // (starting index, ending index)   
 
 // Escape Characters
 const str2 = "He said, \"Hello World\"";
