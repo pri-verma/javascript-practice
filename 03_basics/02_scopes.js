@@ -21,4 +21,41 @@ console.log(d);   //shows local scope value
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function one 
+function one(){
+    const username = "pri"
+
+    function two(){
+        const website = "noshimi"
+        console.log(username);
+    }
+    //console.log(website);     //Out of scope of function two
+    two()
+}
+one()
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+if(true){
+    const name = "pri"
+    if (name=== "pri"){
+        const website = " noshimi"
+        console.log(name + website);
+    }
+    //console.log(website);
+    
+}
+//console.log(name);    //Out of if function
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+console.log(add_one(5));  //this will execute 
+function add_one(num){
+    return num + 1
+}
+
+//console.log(add_two(5));  //this will not execute , Cannot access 'add_two' before initialization
+const add_two = function(num){
+    return num + 2
+}
+console.log(add_two(5));
