@@ -1,0 +1,46 @@
+JavaScript Execution Context
+
+_____________________
+|                   |
+|                   |       -------->  Global Execution Context (GEC)  <= this
+|     JavaScipt     |
+|       Code        |       -------->  Function Execution Context (FEC)
+|                   |
+|                   |       -------->  Eval Execution Context (EEC) {Property of (GEC)}
+|___________________|
+
+# Global Execution Context will always present even if it has no value
+# Global Execution Context Browser aur Node.js ka alag alag hota hai
+# Browser mai this ki value window object aati hai
+
+# JavaScipt is single threaded
+
+// JavaScipt will run in phase
+_____________________
+|                   |
+|                   |       -------->  Memory Creation Phase (MCP) / Creation Phase
+|     JavaScipt     |                  (Memory allocation, variable declaration)
+|       Code        |      
+|                   |       -------->  Execution Phase
+|                   |                  (Execution of operators, function)
+|___________________|
+
+_______________CODE_________________
+|   let val1 = 10                  |                (1) GLOBAL EXECUTION CONTEXT  <= this
+|   let val2 = 20                  |                (2) MEMORY CREATION PHASE
+|   function add(num1, num2){      |                        val1 -> undefined
+|       let total = num1+num2      |                        val2 -> undefined
+|       return total               |                        add -> defination
+|   }                              |                        result1 -> undefined
+|   let result1 = add(val1,val2)   |                        result2 -> undefined
+|   let result1 = add(4,8)         |                (3) EXECUTION PHASE
+|__________________________________|                        val1 <- 10 
+                                                            val2 <- 20   ___________________________
+                                                            add ------>  |                          |
+                                                                         | new variable enviroment  |
+                                                                         |           +              |
+                                                                         |  execution thread        |
+                                                                         |__________________________|
+                                                                         
+
+                                                                         
