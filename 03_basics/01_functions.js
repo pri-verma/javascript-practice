@@ -84,4 +84,6 @@ function get_second_value(array){
     return array[2]
 }
 
+
+console.log(arr);
 console.log(get_second_value(arr));
