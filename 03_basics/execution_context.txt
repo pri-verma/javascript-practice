@@ -10,12 +10,14 @@ _____________________
 |___________________|
 
 # Global Execution Context will always present even if it has no value
-# Global Execution Context Browser aur Node.js ka alag alag hota hai
-# Browser mai this ki value window object aati hai
-
+# Global Execution Context of Browser and  Node.js is different
+# In Browser, value of "this" will be window object 
 # JavaScipt is single threaded
 
-// JavaScipt will run in phase
+
+
+
+// JavaScipt will run in two phases :
 _____________________
 |                   |
 |                   |       -------->  Memory Creation Phase (MCP) / Creation Phase
