@@ -31,10 +31,11 @@ _______________CODE_________________
 |   let val1 = 10                  |                (1) GLOBAL EXECUTION CONTEXT  <= this
 |   let val2 = 20                  |                (2) MEMORY CREATION PHASE
 |   let val2 = 20                  |                        val1 -> undefined
-|       let total = num1+num2      |                        val2 -> undefined
-|       return total               |                        add -> defination
-|   }                              |                        result1 -> undefined
-|   let result1 = add(val1,val2)   |                        result2 -> undefined
+|   function add(num1,num2){       |                        val2 -> undefined
+|       let total = num1+num2      |                        add -> defination
+|       return total               |                        result1 -> undefined
+|   }                              |                        result2 -> undefined
+|   let result1 = add(val1,val2)   |                        
 |   let result1 = add(4,8)         |                (3) EXECUTION PHASE
 |__________________________________|                        val1 <- 10 
                                                             val2 <- 20               ___________________________
