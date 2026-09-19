@@ -28,19 +28,94 @@ _____________________
 _______________CODE_________________
 |   let val1 = 10                  |                (1) GLOBAL EXECUTION CONTEXT  <= this
 |   let val2 = 20                  |                (2) MEMORY CREATION PHASE
-|   function add(num1, num2){      |                        val1 -> undefined
+|   let val2 = 20                  |                        val1 -> undefined
 |       let total = num1+num2      |                        val2 -> undefined
 |       return total               |                        add -> defination
 |   }                              |                        result1 -> undefined
 |   let result1 = add(val1,val2)   |                        result2 -> undefined
 |   let result1 = add(4,8)         |                (3) EXECUTION PHASE
 |__________________________________|                        val1 <- 10 
-                                                            val2 <- 20   ___________________________
-                                                            add ------>  |                          |
-                                                                         | new variable enviroment  |
-                                                                         |           +              |
-                                                                         |  execution thread        |
-                                                                         |__________________________|
-                                                                         
+                                                            val2 <- 20               ___________________________
+                                                            add ------------------>  |                          |
+                                                                                     | new variable enviroment  |
+                                                                                     |           +              |  <=== After execution GEC will delete
+                                                                                     |     execution thread     |
+                                                                                     |__________________________|
+                                                                                                 |
+                                                                                                 |
+                                                                              ___________________|___________________
+                                                                              |                                      |
+                                                                              |                                      |
+                                                                        MEMORY PHASE                         EXECUTION PHASE
+                                                                       val1 -> undefined                      num1 -> 10
+                                                                       val2 -> undefined                      num2 -> 20
+                                                                       total -> undefined                     total -> 30  => return to GEC
+                                                            
+                                                            result1 = 30             ___________________________
+                                                            add ------------------>  |                          |
+                                                                                     | new variable enviroment  |
+                                                                                     |           +              |  <=== After execution GEC will delete
+                                                                                     |     execution thread     |
+                                                                                     |__________________________|
+                                                                                                 |
+                                                                                                 |
+                                                                              ___________________|___________________
+                                                                              |                                      |
+                                                                              |                                      |
+                                                                        MEMORY PHASE                         EXECUTION PHASE
+                                                                       val1 -> undefined                      num1 -> 4
+                                                                       val2 -> undefined                      num2 -> 8
+                                                                       total -> undefined                     total -> 12  => return to GEC
 
-                                                                         
+                                                            result2 = 12
+
+
+****************************************************************    CALL STACK   ****************************************************************
+       
+       _____________________________________
+       |____________________________________|                                           _______________CODE_________________        
+       |____________________________________|                                        1. |   one(){                         |
+       |____________________________________|                                        2. |         two()                    |
+       |____________________________________|                                        3. |   }                              |
+       |____________________________________|                                        4. |                                  |
+       |____________________________________|                                        5. |   two(){                         |
+       |______________three()_______________|                                        6. |         three()                  |
+       |______________three()_______________|                                        7. |   }                              |
+       |______________two()_________________|              ^                         8. |                                  |
+       |______________three()_______________|              |                         9. |   three(){}                      |
+       |______________two()_________________|              |                        10. |__________________________________|
+       |______________one()_________________|              |                        
+       |______GLOBAL_EXECUTION_CONTEXT______|            STACK                      
+                                                         (LIFO)
+                                                    Last In First Out
+
+
+`````````````````````` Steps of Execution `````````````````````
+
+# Line 1 will execute one()          ---|
+# Line 2 will call two()                |
+# Line 5 will execute two()             |------> one() 
+# Line 6 will call three()              |
+# Line 9 will execute three()        ---|
+
+~ Line 9 three() result will go to Line 6 three()
+~ Line 6 three() result will go to Line 5 two()
+~ Line 5 two() result will go to Line 2 two()
+~ Line 2 two() result will go to Line 1 one()
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+# Line 2 will call two()             ---|
+# Line 5 will execute two()             |------> two()
+# Line 6 will call three()              |
+# Line 9 will execute three()        ---|
+
+~ Line 9 three() result will go to Line 6 three()
+~ Line 6 three() result will go to Line 5 two()
+~ Line 5 two() result will go to Line 2 two()
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+# Line 9 will execute three()            ------> three()
+
+END OF PROGRAM
