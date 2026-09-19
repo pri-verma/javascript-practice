@@ -1,4 +1,4 @@
-JavaScript Execution Context
+                                            JavaScript Execution Context
 
 _____________________
 |                   |
@@ -38,7 +38,7 @@ _______________CODE_________________
                                                             val2 <- 20               ___________________________
                                                             add ------------------>  |                          |
                                                                                      | new variable enviroment  |
-                                                                                     |           +              |  <=== After execution GEC will delete
+                                                                                     |           +              |  <=== After execution GEC will delete                  
                                                                                      |     execution thread     |
                                                                                      |__________________________|
                                                                                                  |
@@ -54,7 +54,7 @@ _______________CODE_________________
                                                             result1 = 30             ___________________________
                                                             add ------------------>  |                          |
                                                                                      | new variable enviroment  |
-                                                                                     |           +              |  <=== After execution GEC will delete
+                                                                                     |           +              |  <=== After execution GEC will delete               
                                                                                      |     execution thread     |
                                                                                      |__________________________|
                                                                                                  |
