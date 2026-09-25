@@ -8,6 +8,8 @@ console.log(values);    // return undefined
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// filter()
+
 const nums = [1,2,3,4,5,6,7,8,9,10]
 
 //version 1
@@ -16,7 +18,7 @@ console.log(new_nums1);
 
 //version 2
 const new_nums2 = nums.filter ( (num) => {return num > 4})   // if {} is used, then return is neccessary
-console.log(new_nums2);
+console.log(new_nums2);                                      // if return is not present, it will give empty array
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
